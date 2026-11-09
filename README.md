@@ -26,3 +26,7 @@ Desenvolvido na disciplina de Projeto de Software, como parte das atividades pr�
 ## Status do projeto
 
 Projeto em desenvolvimento, com foco na organização e no controle de estoque de produtos.
+
+## Público-alvo
+
+O sistema é destinado aos funcionários responsáveis pelo controle de estoque, facilitando o acompanhamento dos produtos disponíveis.
