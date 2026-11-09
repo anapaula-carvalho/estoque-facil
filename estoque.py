@@ -1,12 +1,16 @@
+
 produtos = []
+
 
 def ler_quantidade(mensagem, permitir_zero=True):
     while True:
         try:
             quantidade = int(input(mensagem))
 
-            if quantidade < 0 or (quantidade == 0 and not permitir_zero):
-                print("Informe uma quantidade válida.")
+            if quantidade < 0:
+                print("Informe uma quantidade não negativa.")
+            elif quantidade == 0 and not permitir_zero:
+                print("A quantidade deve ser maior que zero.")
             else:
                 return quantidade
 
@@ -16,6 +20,10 @@ def ler_quantidade(mensagem, permitir_zero=True):
 
 def cadastrar_produto():
     nome = input("Nome do produto: ")
+
+    if not nome.strip():
+        print("O nome do produto não pode ficar vazio.")
+        return
 
     quantidade = ler_quantidade("Quantidade inicial: ")
     minimo = ler_quantidade("Quantidade mínima: ")
@@ -35,10 +43,17 @@ def listar_produtos():
         return
 
     for produto in produtos:
-        print(f"{produto['nome']} - Quantidade: {produto['quantidade']}")
+        print(
+            f"{produto['nome']} - "
+            f"Quantidade: {produto['quantidade']}"
+        )
 
 
 def verificar_estoque():
+    if not produtos:
+        print("Nenhum produto cadastrado.")
+        return
+
     for produto in produtos:
         if produto["quantidade"] <= produto["minimo"]:
             print(f"ALERTA: Estoque baixo - {produto['nome']}")
@@ -85,6 +100,7 @@ def menu():
         elif opcao == "4":
             registrar_saida()
         elif opcao == "0":
+            print("Sistema encerrado.")
             break
         else:
             print("Opção inválida!")
