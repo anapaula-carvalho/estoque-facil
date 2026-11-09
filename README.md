@@ -22,3 +22,7 @@ Facilitar o controle de entrada e saída de produtos, permitindo identificar ite
 ## Projeto acadêmico
 
 Desenvolvido na disciplina de Projeto de Software, como parte das atividades práticas do curso de Análise e Desenvolvimento de Sistemas.
+
+## Status do projeto
+
+Projeto em desenvolvimento, com foco na organização e no controle de estoque de produtos.
