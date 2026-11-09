@@ -1,9 +1,25 @@
+
 produtos = []
+
+def ler_quantidade(mensagem, permitir_zero=True):
+    while True:
+        try:
+            quantidade = int(input(mensagem))
+
+            if quantidade < 0 or (quantidade == 0 and not permitir_zero):
+                print("Informe uma quantidade válida.")
+            else:
+                return quantidade
+
+        except ValueError:
+            print("Digite apenas números inteiros.")
+
 
 def cadastrar_produto():
     nome = input("Nome do produto: ")
-    quantidade = int(input("Quantidade inicial: "))
-    minimo = int(input("Quantidade mínima: "))
+
+    quantidade = ler_quantidade("Quantidade inicial: ")
+    minimo = ler_quantidade("Quantidade mínima: ")
 
     produtos.append({
         "nome": nome,
@@ -13,6 +29,7 @@ def cadastrar_produto():
 
     print("Produto cadastrado com sucesso!")
 
+
 def listar_produtos():
     if not produtos:
         print("Nenhum produto cadastrado.")
@@ -21,21 +38,24 @@ def listar_produtos():
     for produto in produtos:
         print(f"{produto['nome']} - Quantidade: {produto['quantidade']}")
 
+
 def verificar_estoque():
     for produto in produtos:
         if produto["quantidade"] <= produto["minimo"]:
             print(f"ALERTA: Estoque baixo - {produto['nome']}")
+
 
 def registrar_saida():
     nome = input("Nome do produto: ")
 
     for produto in produtos:
         if produto["nome"].lower() == nome.lower():
-            quantidade = int(input("Quantidade de saída: "))
+            quantidade = ler_quantidade(
+                "Quantidade de saída: ",
+                permitir_zero=False
+            )
 
-            if quantidade <= 0:
-                print("Informe uma quantidade válida.")
-            elif quantidade <= produto["quantidade"]:
+            if quantidade <= produto["quantidade"]:
                 produto["quantidade"] -= quantidade
                 print("Saída registrada com sucesso!")
             else:
@@ -44,6 +64,7 @@ def registrar_saida():
             return
 
     print("Produto não encontrado.")
+
 
 def menu():
     while True:
@@ -69,4 +90,6 @@ def menu():
         else:
             print("Opção inválida!")
 
+
 menu()
+
