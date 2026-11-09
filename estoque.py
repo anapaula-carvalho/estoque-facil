@@ -1,4 +1,3 @@
-
 produtos = []
 
 def ler_quantidade(mensagem, permitir_zero=True):
